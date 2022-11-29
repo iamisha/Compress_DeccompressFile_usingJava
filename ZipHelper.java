@@ -1,14 +1,15 @@
-import java.io.*;
+
 import java.util.zip.*;
+import java.io.*;
 
 class ZipHelper {
     public void zip(File folder) {
         File[] files = folder.listFiles();
         if (files.length == 0) {
-            throw new IllegalArgumentException("Folder is empty");
+            throw new IllegalArgumentException("You're Folder is empty");
         }
         try {
-            FileOutputStream fos = new FileOutputStream("myzip.zip");
+            FileOutputStream fos = new FileOutputStream("zipfolder.zip");
             ZipOutputStream zos = new ZipOutputStream(fos);
             for (File file : files) {
                 FileInputStream fis = new FileInputStream(file);
@@ -31,7 +32,7 @@ class ZipHelper {
     public static void main(String[] args) {
         try {
             new ZipHelper().zip(new File("java-2nd"));
-            new ZipHelper().unzip(new File("myzip.zip"));
+            new ZipHelper().unzip(new File("zipfolder.zip"));
 
         } catch (IllegalArgumentException e) {
             System.err.println(e.getLocalizedMessage());
